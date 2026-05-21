@@ -249,10 +249,9 @@ jq 'select(.feature_vector[3] > 0.1) | {tick, context: .assigned_context, r_sec:
 ## Citing this work
 
 ```bibtex
-@inproceedings{tibermacine2026trustlens,
+@misc{tibermacine2026trustlens,
   author    = {Tibermacine, Chouki},
-  title     = {TrustLens: Runtime Context-Aware Zero Trust Posture Recommendation},
-  booktitle = {<venue>},
+  title     = {TrustLens: A Framework for Adaptive Security Posture to Minimise the Zero Trust Security Tax},
   year      = {2026},
   url       = {https://github.com/ctiber/trustlens}
 }
