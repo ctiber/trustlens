@@ -84,7 +84,7 @@ The experiments are I/O and network-bound rather than CPU-bound; any machine wit
 **The scripts assume the repository is cloned to `~/trustlens`.**
 
 ```bash
-git clone <repo-url> ~/trustlens
+git clone https://github.com/ctiber/trustlens ~/trustlens
 cd ~/trustlens
 bash scripts/08_run_all.sh
 ```
@@ -254,7 +254,7 @@ jq 'select(.feature_vector[3] > 0.1) | {tick, context: .assigned_context, r_sec:
   title     = {TrustLens: Runtime Context-Aware Zero Trust Posture Recommendation},
   booktitle = {<venue>},
   year      = {2026},
-  url       = {<repo-url>}
+  url       = {https://github.com/ctiber/trustlens}
 }
 ```
 
