@@ -1,0 +1,25 @@
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+
+scrape_configs:
+
+  - job_name: ms-user
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ['ms-user:8191']
+
+  - job_name: ms-location
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ['ms-location:8192']
+
+  - job_name: ms-proximity-detection
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ['ms-proximity-detection:8083']
+
+  - job_name: ms-notification
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ['ms-notification:8084']

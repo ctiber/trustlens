@@ -1,0 +1,124 @@
+version: "3.9"
+
+# ── Base docker-compose (V2 profile by default) ──────────────────────────────
+# Usage:
+#   V1:  docker-compose -f docker-compose.yml -f docker-compose.v1.yml up
+#   V2:  docker-compose up                          (default)
+#   V3:  docker-compose -f docker-compose.yml -f docker-compose.v3.yml up
+
+networks:
+  trustlens-net:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+services:
+
+  # ── Infrastructure ──────────────────────────────────────────────────────────
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks: [trustlens-net]
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    depends_on: [zookeeper]
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    networks: [trustlens-net]
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks: [trustlens-net]
+
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks: [trustlens-net]
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on: [prometheus]
+    networks: [trustlens-net]
+
+  # ── API Gateway (nginx reverse proxy) ──────────────────────────────────────
+
+  api-gateway:
+    image: nginx:1.25-alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on: [ms-user, ms-location]
+    networks: [trustlens-net]
+
+  # ── Microservices ───────────────────────────────────────────────────────────
+
+  ms-user:
+    build: ./ms-user
+    environment:
+      SPRING_PROFILES_ACTIVE: v2
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      JWT_SECRET: ${JWT_SECRET:-trustlens-dev-secret-key-256bit!!}
+    ports:
+      - "8081:8081"
+      - "8191:8191"
+    depends_on: [kafka, redis]
+    networks: [trustlens-net]
+
+  ms-location:
+    build: ./ms-location
+    environment:
+      SPRING_PROFILES_ACTIVE: v2
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      JWT_SECRET: ${JWT_SECRET:-trustlens-dev-secret-key-256bit!!}
+      SPRING_REDIS_HOST: redis
+    ports:
+      - "8082:8082"
+      - "8192:8192"
+    depends_on: [kafka, redis]
+    networks: [trustlens-net]
+
+  ms-proximity-detection:
+    build: ./ms-proximity-detection
+    environment:
+      SPRING_PROFILES_ACTIVE: v2
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_REDIS_HOST: redis
+    ports:
+      - "8083:8083"
+    depends_on: [kafka, redis]
+    networks: [trustlens-net]
+
+  ms-notification:
+    build: ./ms-notification
+    environment:
+      SPRING_PROFILES_ACTIVE: v2
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SPRING_REDIS_HOST: redis
+    ports:
+      - "8084:8084"
+    depends_on: [kafka, redis]
+    networks: [trustlens-net]

@@ -1,0 +1,79 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: ms-proximity-detection
+  cloud:
+    vault:
+      enabled: false
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: proximity-detection-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: 6379
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# ── V1 Profile ────────────────────────────────────────────────────────────────
+---
+spring:
+  config:
+    activate:
+      on-profile: v1
+  cloud:
+    vault:
+      enabled: false
+
+trustlens:
+  profile: v1
+
+# ── V2 Profile ────────────────────────────────────────────────────────────────
+---
+spring:
+  config:
+    activate:
+      on-profile: v2
+  cloud:
+    vault:
+      enabled: false
+
+trustlens:
+  profile: v2
+
+# ── V3 Profile ────────────────────────────────────────────────────────────────
+---
+spring:
+  config:
+    activate:
+      on-profile: v3
+  cloud:
+    vault:
+      uri: ${VAULT_URI:http://localhost:8200}
+      token: ${VAULT_TOKEN:root-token}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: ms-proximity-detection
+
+trustlens:
+  profile: v3

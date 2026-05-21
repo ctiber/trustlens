@@ -1,0 +1,175 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: ms-location
+  cloud:
+    vault:
+      enabled: false
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:localhost}
+      port: 6379
+      timeout: 1500ms
+      connect-timeout: 1000ms
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+management:
+  server:
+    port: 8192
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+jwt:
+  secret: ${JWT_SECRET:trustlens-dev-secret-key-256bit!!}
+  expiration-ms: 3600000
+
+# ── V1 Profile — Implicit Trust ──────────────────────────────────────────────
+---
+spring:
+  config:
+    activate:
+      on-profile: v1
+  cloud:
+    vault:
+      enabled: false
+  security:
+    enabled: false
+
+trustlens:
+  profile: v1
+  primitives:
+    p1: 1
+    p2: 0
+
+# ── V2 Profile — Standard Zero Trust ─────────────────────────────────────────
+---
+spring:
+  config:
+    activate:
+      on-profile: v2
+  cloud:
+    vault:
+      enabled: false
+
+trustlens:
+  profile: v2
+  primitives:
+    p1: 1
+    p2: 1
+
+# ── v2-mtls Profile — JWT + mTLS, no Vault, no RiskEvaluator ─────────────────
+---
+spring:
+  config:
+    activate:
+      on-profile: v2-mtls
+  cloud:
+    vault:
+      enabled: false
+
+server:
+  ssl:
+    enabled: true
+    key-store: /certs/keystore.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    trust-store: /certs/truststore.p12
+    trust-store-password: changeit
+    trust-store-type: PKCS12
+    client-auth: need
+
+trustlens:
+  profile: v2-mtls
+  primitives:
+    p1: 1
+    p2: 1
+    p3: 1
+    p4: 0
+    p5: 0
+
+# ── v2-vault Profile — JWT + mTLS + Vault, no RiskEvaluator ──────────────────
+---
+spring:
+  config:
+    activate:
+      on-profile: v2-vault
+  cloud:
+    vault:
+      uri: ${VAULT_URI:http://localhost:8200}
+      token: ${VAULT_TOKEN:root-token}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: ms-location
+
+server:
+  ssl:
+    enabled: true
+    key-store: /certs/keystore.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    trust-store: /certs/truststore.p12
+    trust-store-password: changeit
+    trust-store-type: PKCS12
+    client-auth: need
+
+trustlens:
+  profile: v2-vault
+  primitives:
+    p1: 1
+    p2: 1
+    p3: 1
+    p4: 1
+    p5: 0
+
+# ── V3 Profile — Enhanced Zero Trust ─────────────────────────────────────────
+---
+spring:
+  config:
+    activate:
+      on-profile: v3
+  cloud:
+    vault:
+      uri: ${VAULT_URI:http://localhost:8200}
+      token: ${VAULT_TOKEN:root-token}
+      kv:
+        enabled: true
+        backend: secret
+        default-context: ms-location
+
+server:
+  ssl:
+    enabled: true
+    key-store: /certs/keystore.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+    trust-store: /certs/truststore.p12
+    trust-store-password: changeit
+    trust-store-type: PKCS12
+    client-auth: need
+
+management:
+  server:
+    ssl:
+      enabled: false
+
+trustlens:
+  profile: v3
+  primitives:
+    p1: 1
+    p2: 1
+    p3: 1
+    p4: 1
+    p5: 1

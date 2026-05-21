@@ -1,0 +1,32 @@
+version: "3.9"
+
+# ── v2-mtls override — JWT + mTLS (p3), no Vault, no RiskEvaluator ───────────
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.v2-mtls.yml up
+
+services:
+
+  api-gateway:
+    volumes:
+      - ./gateway/nginx-v3.conf:/etc/nginx/nginx.conf:ro
+      - ./certs/gateway:/etc/nginx/certs/gateway:ro
+      - ./certs/ca.crt:/etc/nginx/certs/ca.crt:ro
+
+  ms-user:
+    environment:
+      SPRING_PROFILES_ACTIVE: v2-mtls
+    volumes:
+      - ./certs/ms-user:/certs:ro
+
+  ms-location:
+    environment:
+      SPRING_PROFILES_ACTIVE: v2-mtls
+    volumes:
+      - ./certs/ms-location:/certs:ro
+
+  ms-proximity-detection:
+    environment:
+      SPRING_PROFILES_ACTIVE: v2-mtls
+
+  ms-notification:
+    environment:
+      SPRING_PROFILES_ACTIVE: v2-mtls

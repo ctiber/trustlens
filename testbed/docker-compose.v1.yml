@@ -1,0 +1,22 @@
+version: "3.9"
+
+# ── V1 override — Implicit Trust ─────────────────────────────────────────────
+# All security delegated to the API Gateway; services trust internal traffic.
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.v1.yml up
+
+services:
+  ms-user:
+    environment:
+      SPRING_PROFILES_ACTIVE: v1
+
+  ms-location:
+    environment:
+      SPRING_PROFILES_ACTIVE: v1
+
+  ms-proximity-detection:
+    environment:
+      SPRING_PROFILES_ACTIVE: v1
+
+  ms-notification:
+    environment:
+      SPRING_PROFILES_ACTIVE: v1

@@ -1,0 +1,50 @@
+version: "3.9"
+
+# ── v2-vault override — JWT + mTLS + Vault (p3+p4), no RiskEvaluator ─────────
+# Usage: docker-compose -f docker-compose.yml -f docker-compose.v2-vault.yml up
+
+services:
+
+  vault:
+    image: hashicorp/vault:1.15
+    cap_add: [IPC_LOCK]
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: root-token
+      VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8200
+    networks: [trustlens-net]
+
+  api-gateway:
+    volumes:
+      - ./gateway/nginx-v3.conf:/etc/nginx/nginx.conf:ro
+      - ./certs/gateway:/etc/nginx/certs/gateway:ro
+      - ./certs/ca.crt:/etc/nginx/certs/ca.crt:ro
+
+  ms-user:
+    environment:
+      SPRING_PROFILES_ACTIVE: v2-vault
+      VAULT_URI: http://vault:8200
+      VAULT_TOKEN: root-token
+    volumes:
+      - ./certs/ms-user:/certs:ro
+    depends_on:
+      - vault
+
+  ms-location:
+    environment:
+      SPRING_PROFILES_ACTIVE: v2-vault
+      VAULT_URI: http://vault:8200
+      VAULT_TOKEN: root-token
+    volumes:
+      - ./certs/ms-location:/certs:ro
+    depends_on:
+      - vault
+
+  ms-proximity-detection:
+    environment:
+      SPRING_PROFILES_ACTIVE: v2-vault
+
+  ms-notification:
+    environment:
+      SPRING_PROFILES_ACTIVE: v2-vault
