@@ -1,0 +1,17 @@
+▶ variant=v3  mtls=on  profiles=sr ra  T_rot=60s
+✓ v3 ready after 14s
+  [15:21:39] monitor_start
+  [15:23:39] A_start
+  [15:34:10] A_end
+▶ variant=v3  mtls=on  profiles=sr ra  T_rot=60s
+✓ v3 ready after 14s
+  [15:35:26] B_start
+  [15:37:26] redis_stop
+  [15:39:27] redis_start
+  [15:45:49] B_end
+▶ variant=v3  mtls=on  profiles=sr ra  T_rot=60s
+✓ v3 ready after 14s
+  [15:47:04] C_start
+  [15:57:34] C_end
+  [15:58:04] monitor_end
+=== Phase 2 complete. Alerts: /home/chouki/trustlens/results_zt/alerts.jsonl ===

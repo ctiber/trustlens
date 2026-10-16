@@ -1,6 +1,6 @@
 package fr.irisa.trustlens.msuser.controller;
 
-import fr.irisa.trustlens.msuser.security.JwtUtil;
+import fr.irisa.trustlens.zt.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final JwtUtil jwtUtil;
+    private final JwtService jwtService;
 
     @PostMapping("/auth/login")
     public ResponseEntity<Map<String, String>> login(
@@ -27,7 +27,7 @@ public class UserController {
         String device   = body.getOrDefault("device",
             UUID.randomUUID().toString());
 
-        String token = jwtUtil.generateToken(username, device);
+        String token = jwtService.generate(username, device);
         return ResponseEntity.ok(Map.of(
             "token",  token,
             "userId", username

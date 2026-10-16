@@ -1,0 +1,174 @@
+# ── TrustLens testbed — fine-grained Zero Trust primitives ───────────────────
+# Each primitive is an independent flag (ported from the ZT-Tax package):
+#   ZT_AC4A  p2  JWT verified by every service, incl. Kafka consumers
+#   ZT_MTLS  p3  mTLS gateway→services + mutually-authenticated Kafka listener
+#   ZT_SR    p4  JWT key in Vault, rotated every ZT_SR_BASE_PERIOD_S / a4 s
+#   ZT_RA    p5  synchronous call to the risk-analysis service per request
+# Variants live in variants/*.env; launch with ./run-variant.sh <variant>.
+# Compose profiles: sr (vault, vault-init), ra (risk-analysis).
+
+networks:
+  trustlens-net:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+
+x-zt-service: &zt-service
+  env_file:
+    - ${ZT_VARIANT_ENV:-variants/v1.env}
+    - zt/mtls-${ZT_MTLS_MODE:-off}.kafka.env
+  networks: [trustlens-net]
+  depends_on: [kafka, redis]
+  restart: on-failure
+
+services:
+
+  # ── Infrastructure ──────────────────────────────────────────────────────────
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks: [trustlens-net]
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    depends_on: [zookeeper]
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    env_file:
+      - zt/mtls-${ZT_MTLS_MODE:-off}.broker.env
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    volumes:
+      - ./certs-zt/kafka:/etc/kafka/secrets:ro
+    networks: [trustlens-net]
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks: [trustlens-net]
+
+  prometheus:
+    image: prom/prometheus:v2.48.0
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus-zt.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks: [trustlens-net]
+
+  # ── p1 — API Gateway (single ingress; nginx) ────────────────────────────────
+  api-gateway:
+    image: nginx:1.25-alpine
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./gateway/${ZT_GATEWAY_CONF:-nginx-${ZT_MTLS_MODE:-off}.conf}:/etc/nginx/nginx.conf:ro
+      - ./certs-zt/gateway:/etc/nginx/certs/gateway:ro
+      - ./certs-zt/ca.crt:/etc/nginx/certs/ca.crt:ro
+    depends_on: [ms-user, ms-location]
+    networks: [trustlens-net]
+
+  # ── Microservices ───────────────────────────────────────────────────────────
+  ms-user:
+    <<: *zt-service
+    build: ./ms-user
+    env_file:
+      - ${ZT_VARIANT_ENV:-variants/v1.env}
+      - zt/mtls-${ZT_MTLS_MODE:-off}.kafka.env
+      - zt/mtls-${ZT_HTTP_MTLS_MODE:-${ZT_MTLS_MODE:-off}}.http.env
+    environment:
+      SPRING_REDIS_HOST: redis
+      JWT_SECRET: ${JWT_SECRET:-trustlens-dev-secret-key-256bit!!}
+    ports:
+      - "8081:8081"
+      - "8191:8191"
+    volumes:
+      - ./certs-zt/ms-user:/certs:ro
+
+  ms-location:
+    <<: *zt-service
+    build: ./ms-location
+    env_file:
+      - ${ZT_VARIANT_ENV:-variants/v1.env}
+      - zt/mtls-${ZT_MTLS_MODE:-off}.kafka.env
+      - zt/mtls-${ZT_HTTP_MTLS_MODE:-${ZT_MTLS_MODE:-off}}.http.env
+    environment:
+      SPRING_REDIS_HOST: redis
+      JWT_SECRET: ${JWT_SECRET:-trustlens-dev-secret-key-256bit!!}
+    ports:
+      - "8082:8082"
+      - "8192:8192"
+    volumes:
+      - ./certs-zt/ms-location:/certs:ro
+
+  ms-proximity-detection:
+    <<: *zt-service
+    build: ./ms-proximity-detection
+    environment:
+      SPRING_REDIS_HOST: redis
+      JWT_SECRET: ${JWT_SECRET:-trustlens-dev-secret-key-256bit!!}
+    ports:
+      - "8083:8083"
+    volumes:
+      - ./certs-zt/ms-proximity-detection:/certs:ro
+
+  ms-notification:
+    <<: *zt-service
+    build: ./ms-notification
+    environment:
+      SPRING_REDIS_HOST: redis
+      JWT_SECRET: ${JWT_SECRET:-trustlens-dev-secret-key-256bit!!}
+    ports:
+      - "8084:8084"
+    volumes:
+      - ./certs-zt/ms-notification:/certs:ro
+
+  # ── p4 — Secret Rotation: HashiCorp Vault (profile: sr) ────────────────────
+  vault:
+    image: hashicorp/vault:1.15
+    profiles: [sr]
+    cap_add: [IPC_LOCK]
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: trustlens-root-token
+      VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8200
+    networks: [trustlens-net]
+
+  vault-init:
+    image: hashicorp/vault:1.15
+    profiles: [sr]
+    depends_on: [vault]
+    environment:
+      VAULT_ADDR: http://vault:8200
+      VAULT_TOKEN: trustlens-root-token
+      ROTATION_PERIOD_S: ${ZT_SR_ROTATION_PERIOD_S:-60}
+    volumes:
+      - ./vault:/vault-config:ro
+    entrypoint: ["sh", "/vault-config/init.sh"]
+    networks: [trustlens-net]
+
+  # ── p5 — Risk Analysis service (profile: ra) ───────────────────────────────
+  risk-analysis:
+    build: ./risk-analysis
+    profiles: [ra]
+    ports:
+      - "9000:9000"
+    environment:
+      PORT: "9000"
+      ALERT_WINDOW_MS: "60000"
+      # Load tests reuse a few hundred accounts at high rate: the per-user
+      # ceilings are set far above benign traffic so that RA measures call
+      # overhead without blocking legitimate requests (as in ZT-Tax).
+      RATE_LIMIT_RPM: "100000"
+      LATERAL_MOVE_THRESHOLD: "15"
+      MAX_SPEED_KMH: "900"
+      MIN_JUMP_KM: "50"
+    networks: [trustlens-net]

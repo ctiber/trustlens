@@ -33,7 +33,7 @@ from config import (
     WEIGHT_SECURITY, WEIGHT_LATENCY, WEIGHT_RELIABILITY,
 )
 from features import FeatureCollector, FeatureVector
-from primitives import enumerate_binary_configurations
+from primitives import recommend as recommend_posture
 
 logger = logging.getLogger(__name__)
 
@@ -249,18 +249,12 @@ class DriftMonitor:
 
     def _recommend(self, r_sec: float, f_rate: float) -> dict:
         """
-        Compute the best config for the *current* observed R_sec / F_rate.
-        Called at alert time so the recommendation reflects live pressure,
-        not the historical regime mean (which may be 0 on benign-only data).
+        Compute the best posture for the *current* observation, with the
+        same scoring and candidate set as Layer 1. r_sec and f_rate are the
+        min-max normalised values of the live feature vector.
         """
-        candidates = enumerate_binary_configurations()
-        def phi(cfg):
-            return (
-                WEIGHT_SECURITY * cfg.protection_score() * r_sec
-                - WEIGHT_LATENCY * cfg.cost_latency()
-                - WEIGHT_RELIABILITY * f_rate
-            )
-        best = max(candidates, key=phi)
+        best, _ = recommend_posture(r_sec, f_rate, WEIGHT_SECURITY,
+                                    WEIGHT_LATENCY, WEIGHT_RELIABILITY)
         return {pid: p.activation for pid, p in best.primitives.items()}
 
     def warm_up(self, n: int = 50) -> None:
@@ -300,7 +294,7 @@ class DriftMonitor:
         )
 
         if alert_triggered or is_uncharted:
-            rec = self._recommend(fv_raw.R_sec, fv_raw.F_rate)
+            rec = self._recommend(float(f_norm[3]), float(f_norm[2]))
             alert = DriftAlert(
                 timestamp            = time.time(),
                 tick                 = self.t,

@@ -16,6 +16,9 @@ class PeakLoadSimulation extends Simulation {
     .baseUrl("http://localhost:8080")
     .contentTypeHeader("application/json")
     .acceptHeader("application/json")
+    // Virtual users share a keep-alive connection pool (API clients behind a
+    // gateway); avoids connection-churn resets in the Docker port proxy.
+    .shareConnections
 
   val feeder = Iterator.continually {
     val id = Random.nextInt(500) + 1

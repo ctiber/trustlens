@@ -1,12 +1,14 @@
 server:
   port: 8083
 
+# Zero Trust primitives are selected with independent flags (ZT_AC4A, ZT_MTLS,
+# ZT_SR, ZT_RA — see testbed/variants/*.env). For this Kafka consumer, p2
+# verifies the JWT propagated in the record header and p3 switches the broker
+# connection to the mutually-authenticated SSL listener.
+
 spring:
   application:
     name: ms-proximity-detection
-  cloud:
-    vault:
-      enabled: false
   kafka:
     bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
@@ -34,46 +36,11 @@ management:
       prometheus:
         enabled: true
 
-# ── V1 Profile ────────────────────────────────────────────────────────────────
----
-spring:
-  config:
-    activate:
-      on-profile: v1
-  cloud:
-    vault:
-      enabled: false
+jwt:
+  secret: ${JWT_SECRET:trustlens-dev-secret-key-256bit!!}
+  expiration-ms: 3600000
 
-trustlens:
-  profile: v1
-
-# ── V2 Profile ────────────────────────────────────────────────────────────────
----
-spring:
-  config:
-    activate:
-      on-profile: v2
-  cloud:
-    vault:
-      enabled: false
-
-trustlens:
-  profile: v2
-
-# ── V3 Profile ────────────────────────────────────────────────────────────────
----
-spring:
-  config:
-    activate:
-      on-profile: v3
-  cloud:
-    vault:
-      uri: ${VAULT_URI:http://localhost:8200}
-      token: ${VAULT_TOKEN:root-token}
-      kv:
-        enabled: true
-        backend: secret
-        default-context: ms-proximity-detection
-
-trustlens:
-  profile: v3
+kafka:
+  topic:
+    location: user.location.updated
+    violations: proximity.violation.detected

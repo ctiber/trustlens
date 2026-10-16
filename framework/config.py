@@ -16,20 +16,25 @@ MONITORING_TICK_SECONDS = 5
 
 # ── Feature collection ────────────────────────────────────────────────────────
 # PromQL queries — adapt metric names to your instrumentation
+# Application requests only: Prometheus scrapes of /actuator are excluded.
+_APP = 'uri!~"/actuator.*"'
 PROMQL_T_AVG = (
-    'sum(rate(http_server_requests_seconds_sum[{window}s])) / '
-    'sum(rate(http_server_requests_seconds_count[{window}s]))'
+    'sum(rate(http_server_requests_seconds_sum{{' + _APP + '}}[{window}s])) / '
+    'sum(rate(http_server_requests_seconds_count{{' + _APP + '}}[{window}s]))'
 )
 PROMQL_U_RES = 'avg(process_cpu_usage) * 100'
 PROMQL_F_RATE = (
     '(sum(rate(http_server_requests_seconds_count'
-    '{{status=~"5.."}}[{window}s])) or vector(0)) / '
-    'sum(rate(http_server_requests_seconds_count[{window}s]))'
+    '{{status=~"5..",' + _APP + '}}[{window}s])) or vector(0)) / '
+    'sum(rate(http_server_requests_seconds_count{{' + _APP + '}}[{window}s]))'
 )
+# Security pressure: HTTP 4xx responses plus the would-be denials of the
+# primitives running in shadow mode (observation floor, zt_shadow_denied_total).
 PROMQL_R_SEC = (
-    '(sum(rate(http_server_requests_seconds_count'
-    '{{status=~"4.."}}[{window}s])) or vector(0)) / '
-    'sum(rate(http_server_requests_seconds_count[{window}s]))'
+    '((sum(rate(http_server_requests_seconds_count'
+    '{{status=~"4..",' + _APP + '}}[{window}s])) or vector(0)) + '
+    '(sum(rate(zt_shadow_denied_total[{window}s])) or vector(0))) / '
+    'sum(rate(http_server_requests_seconds_count{{' + _APP + '}}[{window}s]))'
 )
 
 FEATURE_NAMES = ["T_avg", "U_res", "F_rate", "R_sec"]
@@ -75,17 +80,26 @@ PRIMITIVES = [
     ("p5", "Continuous risk evaluation", "graduated", 0.0),
 ]
 
-# Empirically measured marginal costs per primitive (ablation study)
-# delta_T in seconds (marginal latency vs previous cumulative config)
-# delta_U in normalised resource units (clamped to 0 when negative — measurement noise)
-# p3 dominates: mTLS handshake introduces a x20 latency jump over p2.
-# p4 and p5 are statistically indistinguishable from p3 at 500 RPS (absorbed in p3 variance).
+# Empirically measured marginal costs per primitive — TRUE isolation study
+# (03_isolate_primitives_zt.sh: each primitive enabled alone on top of p1,
+# 500 users/s, 120 s, 5 interleaved runs; results_zt/isolation_results.csv).
+# delta_T: server-side mean response time T_avg, seconds (vs baseline 0.588 ms)
+# delta_U: process CPU usage, fraction. Non-significant negative values -> 0.
+#   p2 +0.061 ms (+10.3%, p<0.001)   p3 +0.110 ms (+18.8%, p=0.004)
+#   p4 -0.001 ms (n.s., p=0.90)      p5 +0.609 ms (+103.6%, p<0.001) — dominant
 PRIMITIVE_COSTS = {
-    "p1": {"delta_T": 0.000000, "delta_U": 0.000000},  # baseline
-    "p2": {"delta_T": 0.000055, "delta_U": 0.000174},  # JWT validation +20.5%
-    "p3": {"delta_T": 0.006194, "delta_U": 0.000000},  # mTLS handshake +1920% — dominant cost
-    "p4": {"delta_T": 0.000376, "delta_U": 0.000000},  # Vault retrieval +5.8% (n.s. at 500 RPS)
-    "p5": {"delta_T": 0.000000, "delta_U": 0.000000},  # RiskEvaluator  (n.s. — absorbed in p3)
+    "p1": {"delta_T": 0.000000, "delta_U": 0.000000},  # baseline (always on)
+    "p2": {"delta_T": 0.000061, "delta_U": 0.0017},    # JWT at every service
+    "p3": {"delta_T": 0.000110, "delta_U": 0.0023},    # mTLS HTTP + Kafka (keep-alive)
+    "p4": {"delta_T": 0.000000, "delta_U": 0.0000},    # Vault rotation (n.s.)
+    "p5": {"delta_T": 0.000609, "delta_U": 0.0044},    # synchronous risk analysis
+}
+
+# Dependencies: a primitive only protects when the primitives it relies on are
+# active. Key rotation (p4) invalidates tokens only if tokens are verified (p2);
+# the closed-loop experiment showed p4 alone letting 100% of replays through.
+PRIMITIVE_DEPENDENCIES = {
+    "p4": ("p2",),
 }
 
 # Reference configurations (V1 / V2 / V3)

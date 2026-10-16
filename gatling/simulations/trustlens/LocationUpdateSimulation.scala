@@ -16,14 +16,18 @@ class LocationUpdateSimulation extends Simulation {
     .baseUrl("http://localhost:8080")
     .contentTypeHeader("application/json")
     .acceptHeader("application/json")
+    // Virtual users share a keep-alive connection pool (API clients behind a
+    // gateway); avoids connection-churn resets in the Docker port proxy.
+    .shareConnections
 
   val userFeeder = Iterator.continually {
     val id = Random.nextInt(100) + 1
     Map(
       "userId"   -> s"user$id",
       "deviceId" -> s"device-$id",
-      "lat"      -> (48.0 + Random.nextDouble() * 0.5),
-      "lon"      -> (-2.0 + Random.nextDouble() * 0.5)
+      // Fixed position per user ID — avoids impossible-travel false positives under p5
+      "lat"      -> (48.0 + (id % 30) * 0.01),
+      "lon"      -> (-2.0 + (id % 30) * 0.01)
     )
   }
 

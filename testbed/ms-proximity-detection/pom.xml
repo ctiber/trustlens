@@ -22,15 +22,16 @@
   </properties>
 
   <dependencies>
+    <!-- Zero Trust primitives (p2 AC4A, p4 SR, p5 RA) -->
+    <dependency>
+      <groupId>fr.irisa.trustlens</groupId>
+      <artifactId>zt-common</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
     <!-- Web (for actuator/Prometheus endpoints) -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-    <!-- Vault (p4 — dynamic secret rotation) -->
-    <dependency>
-      <groupId>org.springframework.cloud</groupId>
-      <artifactId>spring-cloud-starter-vault-config</artifactId>
     </dependency>
     <!-- Kafka -->
     <dependency>

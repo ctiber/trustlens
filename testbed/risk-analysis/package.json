@@ -1,0 +1,11 @@
+{
+  "name": "trustlens-risk-analysis",
+  "version": "1.0.0",
+  "description": "Risk Analysis service (p5) - port of the ZT-Tax RA primitive",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": {
+    "express": "^4.19.2",
+    "prom-client": "^15.1.0"
+  }
+}

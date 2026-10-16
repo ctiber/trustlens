@@ -1,0 +1,61 @@
+
+=== Closed-loop Phase 2: per run ===
+ mode  T_avg_ms  e2e_mean_ms  e2e_p99_ms  legit_ko_outside_outage  legit_ko_outage  alerts  full_posture_share  switches  C1_accepted  C1_total  C1_accept_pct  C1_alert_s  C1_escalated_s  B_accepted  B_total  B_accept_pct  B_alert_s  B_escalated_s  C2_accepted  C2_total  C2_accept_pct  C2_alert_s  C2_escalated_s
+   cl      1.33         3.57         5.0                        0            61186      83                0.58       2.0         1607      3600          44.64       13.80           54.50           0    10800           0.0      10.72            NaN            0      3600            0.0       12.72             NaN
+   cl      1.41         5.05         5.0                        0            61825      85                0.58       2.0         1514      3600          42.06       10.62           51.34           0    10800           0.0       7.54            NaN            0      3600            0.0       14.64             NaN
+   cl      1.33         4.08         5.0                        0            61275      87                0.58       2.0         1634      3600          45.39       14.54           55.43           0    10800           0.0       6.39            NaN            0      3600            0.0       13.34             NaN
+   cl      1.29         3.38         5.0                        0            63209      84                0.58       2.0         1460      3600          40.56        8.82           49.57           0    10800           0.0      10.71            NaN            0      3600            0.0       12.65             NaN
+   cl      1.34         4.70         5.0                        0            62431      83                0.58       2.0         1479      3600          41.08        9.43           50.15           0    10800           0.0      11.32            NaN            0      3600            0.0       13.22             NaN
+light      0.85         1.97         5.0                        0            61183      99                 NaN       NaN         3600      3600         100.00        9.52             NaN       10800    10800         100.0      11.54            NaN         3600      3600          100.0       23.54             NaN
+light      0.78         1.90         4.0                        0            61350     102                 NaN       NaN         3600      3600         100.00        9.94             NaN       10800    10800         100.0      11.73            NaN         3600      3600          100.0       23.61             NaN
+   v3      1.41         3.26         5.0                        0            63297      79                 NaN       NaN            0      3600           0.00        9.94             NaN           0    10800           0.0      11.81            NaN            0      3600            0.0        8.63             NaN
+   v3      1.38         3.25         5.0                        0            63295      77                 NaN       NaN            0      3600           0.00        9.88             NaN           0    10800           0.0      11.77            NaN            0      3600            0.0       13.67             NaN
+
+=== per mode (mean, sd) ===
+mode                                 cl      light         v3
+T_avg_ms                mean      1.339      0.817      1.394
+                        std       0.043      0.051      0.025
+e2e_mean_ms             mean      4.157      1.934      3.254
+                        std       0.714      0.052      0.013
+e2e_p99_ms              mean      5.000      4.500      5.000
+                        std       0.000      0.707      0.000
+legit_ko_outside_outage mean      0.000      0.000      0.000
+                        std       0.000      0.000      0.000
+legit_ko_outage         mean  61985.200  61266.500  63296.000
+                        std     846.344    118.087      1.414
+alerts                  mean     84.400    100.500     78.000
+                        std       1.673      2.121      1.414
+full_posture_share      mean      0.578        NaN        NaN
+                        std       0.002        NaN        NaN
+switches                mean      2.000        NaN        NaN
+                        std       0.000        NaN        NaN
+C1_accepted             mean   1538.800   3600.000      0.000
+                        std      77.645      0.000      0.000
+C1_total                mean   3600.000   3600.000   3600.000
+                        std       0.000      0.000      0.000
+C1_accept_pct           mean     42.744    100.000      0.000
+                        std       2.157      0.000      0.000
+C1_alert_s              mean     11.440      9.728      9.910
+                        std       2.587      0.299      0.048
+C1_escalated_s          mean     52.197        NaN        NaN
+                        std       2.624        NaN        NaN
+B_accepted              mean      0.000  10800.000      0.000
+                        std       0.000      0.000      0.000
+B_total                 mean  10800.000  10800.000  10800.000
+                        std       0.000      0.000      0.000
+B_accept_pct            mean      0.000    100.000      0.000
+                        std       0.000      0.000      0.000
+B_alert_s               mean      9.336     11.636     11.788
+                        std       2.220      0.128      0.024
+B_escalated_s           mean        NaN        NaN        NaN
+                        std         NaN        NaN        NaN
+C2_accepted             mean      0.000   3600.000      0.000
+                        std       0.000      0.000      0.000
+C2_total                mean   3600.000   3600.000   3600.000
+                        std       0.000      0.000      0.000
+C2_accept_pct           mean      0.000    100.000      0.000
+                        std       0.000      0.000      0.000
+C2_alert_s              mean     13.314     23.577     11.153
+                        std       0.804      0.048      3.565
+C2_escalated_s          mean        NaN        NaN        NaN
+                        std         NaN        NaN        NaN

@@ -1,0 +1,7 @@
+[controller] 19:01:43 initial [1.0, 0.0, 0.0, 0.0, 0.0] 
+[controller] 19:06:10 escalation-scheduled [1.0, 1.0, 1.0, 1.0, 1.0] R1
+[controller] 19:06:41 applied [1.0, 1.0, 1.0, 1.0, 1.0] escalation: alert tick 33 R1
+[controller] 19:10:42 downgrade-scheduled [1.0, 0.0, 0.0, 0.0, 0.0] R0
+[controller] 19:10:57 downgrade-cancelled [1.0, 0.0, 0.0, 0.0, 0.0] alert tick 90
+[controller] 19:20:41 downgrade-scheduled [1.0, 0.0, 0.0, 0.0, 0.0] R0
+[controller] 19:21:11 applied [1.0, 0.0, 0.0, 0.0, 0.0] downgrade validated: 24 ticks in R0

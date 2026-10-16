@@ -3,7 +3,10 @@ package fr.irisa.trustlens.msnotification.kafka;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import fr.irisa.trustlens.zt.KafkaAuth;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -22,12 +25,16 @@ public class ViolationConsumer {
     private static final String VIOLATION_KEY = "notifications:violations:%s:%d";
 
     private final StringRedisTemplate redis;
+    private final KafkaAuth           kafkaAuth;
 
     @KafkaListener(
         topics  = "${kafka.topic.violations:proximity.violation.detected}",
         groupId = "notification-group"
     )
-    public void onViolation(Map<String, Object> event) {
+    public void onViolation(
+            @Payload Map<String, Object> event,
+            @Header(name = KafkaAuth.HEADER, required = false) byte[] token) {
+        if (!kafkaAuth.accept(token)) return;
         String userId    = (String) event.get("userId");
         String reason    = (String) event.getOrDefault("reason", "unknown");
         long   timestamp = event.get("timestamp") != null

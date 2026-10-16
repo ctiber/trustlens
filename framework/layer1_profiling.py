@@ -33,7 +33,7 @@ from config import (
     FEATURE_NAMES, RPT_PATH,
     PRIMITIVES, PRIMITIVE_COSTS, CONFIG_V1, CONFIG_V2, CONFIG_V3,
 )
-from primitives import SecurityConfiguration, enumerate_binary_configurations
+from primitives import SecurityConfiguration, phi as phi_score, recommend as recommend_posture
 
 logger = logging.getLogger(__name__)
 warnings.filterwarnings("ignore", category=FutureWarning)
@@ -174,34 +174,20 @@ class RegimeProfiler:
         Scoring function Φ(s, R_i) — Equation (6) in the paper.
         r_sec_regime and f_rate_regime are the mean observed values
         for regime R_i (MinMax-normalised, in [0,1]).
-        Cost_T(s) is normalised by the maximum possible cost (V3 config)
-        so all three terms share the same [0,1] scale.
         """
-        max_cost = sum(PRIMITIVE_COSTS[p]["delta_T"] for p in PRIMITIVE_COSTS)
-        normalized_cost = config.cost_latency() / max_cost  # in [0,1]
-        return (
-            self.w_s * config.protection_score() * r_sec_regime
-            - self.w_l * normalized_cost
-            - self.w_r * f_rate_regime
-        )
+        return phi_score(config, r_sec_regime, f_rate_regime,
+                         self.w_s, self.w_l, self.w_r)
 
     def recommend(self, regime: Regime) -> SecurityConfiguration:
         """
-        Exhaustive search over binary candidate configurations.
+        Exhaustive search over the 72 candidate postures (binary primitives
+        on/off, graduated primitives at {0, 0.5, 1}).
         Returns s*(R_i) = argmax_s Φ(s, R_i).
         """
         r_sec  = regime.feature_ranges["R_sec"]["mean"]
         f_rate = regime.feature_ranges["F_rate"]["mean"]
-
-        candidates = enumerate_binary_configurations()
-        best_config = candidates[0]
-        best_score  = self.phi(candidates[0], r_sec, f_rate)
-
-        for cfg in candidates[1:]:
-            score = self.phi(cfg, r_sec, f_rate)
-            if score > best_score:
-                best_score  = score
-                best_config = cfg
+        best_config, best_score = recommend_posture(
+            r_sec, f_rate, self.w_s, self.w_l, self.w_r)
 
         regime.recommended_config = {
             pid: p.activation

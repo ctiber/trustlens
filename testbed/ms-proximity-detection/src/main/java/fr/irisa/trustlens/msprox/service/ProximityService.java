@@ -27,7 +27,7 @@ public class ProximityService {
     private final StringRedisTemplate            redis;
     private final KafkaTemplate<String, Object>  kafka;
 
-    public void evaluate(String userId, double lat, double lon) {
+    public void evaluate(String userId, double lat, double lon, byte[] token) {
         String key = String.format(RULES_KEY, userId);
 
         String maxLatStr = redis.opsForHash().get(key, "max_lat") != null
@@ -52,13 +52,17 @@ public class ProximityService {
         if (violation) {
             log.warn("[ProximityService] Violation for user {} at ({}, {})",
                 userId, lat, lon);
-            kafka.send(VIOLATION_TOPIC, userId, java.util.Map.of(
-                "userId",    userId,
-                "lat",       lat,
-                "lon",       lon,
-                "timestamp", System.currentTimeMillis(),
-                "reason",    "Geofence breach"
-            ));
+            var record = new org.apache.kafka.clients.producer.ProducerRecord<String, Object>(
+                VIOLATION_TOPIC, userId, java.util.Map.of(
+                    "userId",    userId,
+                    "lat",       lat,
+                    "lon",       lon,
+                    "timestamp", System.currentTimeMillis(),
+                    "reason",    "Geofence breach"
+                ));
+            // Propagate the caller identity downstream (p2 on the async path)
+            if (token != null) record.headers().add(fr.irisa.trustlens.zt.KafkaAuth.HEADER, token);
+            kafka.send(record);
         } else {
             log.debug("[ProximityService] OK for user {} at ({}, {})",
                 userId, lat, lon);

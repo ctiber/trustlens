@@ -1,0 +1,8 @@
+epoch,event,posture,detail
+1790535279.9,initial,"[1.0, 0.0, 0.0, 0.0, 0.0]",
+1790535547.6,escalation-scheduled,"[1.0, 1.0, 1.0, 1.0, 1.0]",R1
+1790535578.0,applied,"[1.0, 1.0, 1.0, 1.0, 1.0]",escalation: alert tick 33 R1
+1790535819.1,downgrade-scheduled,"[1.0, 0.0, 0.0, 0.0, 0.0]",R0
+1790535839.6,downgrade-cancelled,"[1.0, 0.0, 0.0, 0.0, 0.0]",alert tick 91
+1790536417.8,downgrade-scheduled,"[1.0, 0.0, 0.0, 0.0, 0.0]",R0
+1790536448.1,applied,"[1.0, 0.0, 0.0, 0.0, 0.0]",downgrade validated: 24 ticks in R0

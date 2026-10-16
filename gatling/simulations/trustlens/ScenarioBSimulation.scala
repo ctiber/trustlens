@@ -14,21 +14,32 @@ import scala.util.Random
  * Expected feature response: spike in F_rate as replayed tokens are rejected
  * post-rotation; rise in R_sec.
  *
- * Simulation: attackers log in to capture a token at t=0 (pre-rotation),
- * then replay that same token at high load (representing a post-rotation
- * window where V3's Vault has invalidated the signing key).
+ * Simulation: regular users' tokens are intercepted during the first minute
+ * (pre-rotation) and replayed during the high-load phase, after Vault has
+ * rotated the signing key several times.
  *
  * Injection protocol (paper §IV-E.2):
  *   - 10% malicious mix within the regular stepped load stream
  *   - Injected during the HIGH-LOAD phase (≥700 RPS, t=360s–600s)
  *   - Background: full 10-step profile (100→1000 RPS, 60s/step)
  */
+/** Tokens intercepted early in the run, shared between scenarios. */
+object CapturedTokens {
+  private val tokens = new java.util.concurrent.CopyOnWriteArrayList[(String, Double, Double)]()
+  def store(t: String, lat: Double, lon: Double): Unit = tokens.add((t, lat, lon))
+  def pick(): (String, Double, Double) =
+    if (tokens.isEmpty) ("none", 48.0, -2.0) else tokens.get(Random.nextInt(tokens.size))
+}
+
 class ScenarioBSimulation extends Simulation {
 
   val httpProtocol = http
     .baseUrl("http://localhost:8080")
     .contentTypeHeader("application/json")
     .acceptHeader("application/json")
+    // Virtual users share a keep-alive connection pool (API clients behind a
+    // gateway); avoids connection-churn resets in the Docker port proxy.
+    .shareConnections
 
   val legitimateFeeder = Iterator.continually {
     val id = Random.nextInt(200) + 1
@@ -40,13 +51,16 @@ class ScenarioBSimulation extends Simulation {
     )
   }
 
-  val replayFeeder = Iterator.continually {
-    val victimId = Random.nextInt(50) + 1
+  // Victims are regular users: the attacker intercepts THEIR tokens (same
+  // device claim, same position), so the replay is only distinguishable by
+  // the age of the token, i.e. by the key version it was signed with (p4).
+  val victimFeeder = Iterator.continually {
+    val id = Random.nextInt(200) + 1
     Map(
-      "victimUserId" -> s"user$victimId",
-      "preRotDevice" -> s"pre-rotation-device-$victimId",
-      "lat"          -> (48.0 + Random.nextDouble() * 0.4),
-      "lon"          -> (-2.0 + Random.nextDouble() * 0.4)
+      "victimUserId" -> s"user$id",
+      "victimDevice" -> s"device-$id",
+      "lat"          -> (48.0 + (id % 30) * 0.01),
+      "lon"          -> (-2.0 + (id % 30) * 0.01)
     )
   }
 
@@ -69,25 +83,34 @@ class ScenarioBSimulation extends Simulation {
         .check(status.in(200, 401, 403))
     )
 
-  // Replay attack:
-  //   1. Capture token at t≈0 (before Vault rotates the signing key)
-  //   2. Replay the same token during the high-load phase (post-rotation window)
-  //      In V3, Vault has rotated the key by this point → 401/403
-  //      In V2, stateless validation accepts any well-formed token → 200
-  val replayAttack = scenario("CredentialReplay")
-    .feed(replayFeeder)
+  // Interception: during the first minute, sessions of regular users are
+  // eavesdropped and their JWTs stored (pre-rotation tokens).
+  val interception = scenario("TokenInterception")
+    .feed(victimFeeder)
     .exec(
-      http("capture-pre-rotation-token")
+      http("intercepted-session")
         .post("/auth/login")
-        .body(StringBody("""{"username":"#{victimUserId}","device":"#{preRotDevice}"}""")).asJson
+        .body(StringBody("""{"username":"#{victimUserId}","device":"#{victimDevice}"}""")).asJson
         .check(status.is(200))
-        .check(jsonPath("$.token").saveAs("capturedToken"))
+        .check(jsonPath("$.token").saveAs("stolen"))
     )
-    .exitHereIfFailed
-    // Replay the captured token — simulates post-rotation replay
-    .repeat(5) {
+    .exec { session =>
+      CapturedTokens.store(session("stolen").as[String], session("lat").as[Double], session("lon").as[Double])
+      session
+    }
+
+  // Replay: during the high-load phase the stolen tokens are replayed.
+  //   - With p4 (Vault rotation every 60 s, one version of grace) the tokens,
+  //     now > 5 min old, carry a superseded kid -> 401 -> R_sec rises.
+  //   - Without p4 (static secret) they are accepted -> 200, undetected.
+  val replayAttack = scenario("CredentialReplay")
+    .exec { session =>
+      val (token, lat, lon) = CapturedTokens.pick()
+      session.set("capturedToken", token).set("lat", lat).set("lon", lon)
+    }
+    .repeat(2) {
       exec(
-        http("replay-post-rotation")
+        http("replay-captured-token")
           .post("/location/update")
           .queryParam("lat", "#{lat}")
           .queryParam("lon", "#{lon}")
@@ -110,7 +133,10 @@ class ScenarioBSimulation extends Simulation {
       constantUsersPerSec(900).during(60.seconds),
       constantUsersPerSec(1000).during(60.seconds)
     ),
-    // 10% malicious mix during high-load phase (t=360s to t=600s, avg ~850 RPS → 85 attack RPS)
+    // Token interception during the low-load phase (t=0s to t=60s)
+    interception.inject(constantUsersPerSec(5).during(60.seconds)),
+    // 10% malicious mix during high-load phase (t=360s to t=600s):
+    // 85 attackers/s x 2 replays ≈ 10% of the ≈1700 legitimate req/s
     replayAttack.inject(
       nothingFor(360.seconds),
       constantUsersPerSec(85).during(240.seconds)

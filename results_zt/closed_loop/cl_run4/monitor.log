@@ -1,0 +1,383 @@
+2026-09-27 20:54:40,968 [INFO] RPT loaded: 4 regimes from /home/chouki/trustlens/results_zt/rpt.json
+2026-09-27 20:54:40,968 [INFO] Warming up CUSUM with 20 observations…
+2026-09-27 20:54:40,983 [WARNING] Feature T_avg unavailable; defaulting to 0.0
+2026-09-27 20:54:40,983 [WARNING] Feature F_rate unavailable; defaulting to 0.0
+2026-09-27 20:54:40,983 [WARNING] Feature R_sec unavailable; defaulting to 0.0
+2026-09-27 20:54:46,003 [WARNING] Feature T_avg unavailable; defaulting to 0.0
+2026-09-27 20:54:46,004 [WARNING] Feature F_rate unavailable; defaulting to 0.0
+2026-09-27 20:54:46,004 [WARNING] Feature R_sec unavailable; defaulting to 0.0
+2026-09-27 20:56:21,303 [INFO] CUSUM mu0 estimated: 0.0742 (n=20)
+2026-09-27 20:56:21,304 [INFO] Layer 2 monitor started (tick=5.0s)
+2026-09-27 20:56:21,336 [INFO] Tick 0 | R0 | d_M=0.0275 | S=0.0000 | uncharted=False
+2026-09-27 20:56:26,368 [INFO] Tick 1 | R0 | d_M=0.0275 | S=0.0000 | uncharted=False
+2026-09-27 20:56:31,396 [INFO] Tick 2 | R0 | d_M=0.0387 | S=0.0000 | uncharted=False
+2026-09-27 20:56:36,426 [INFO] Tick 3 | R0 | d_M=0.0379 | S=0.0000 | uncharted=False
+2026-09-27 20:56:41,454 [INFO] Tick 4 | R0 | d_M=0.0320 | S=0.0000 | uncharted=False
+2026-09-27 20:56:46,490 [INFO] Tick 5 | R0 | d_M=0.0393 | S=0.0000 | uncharted=False
+2026-09-27 20:56:51,519 [INFO] Tick 6 | R0 | d_M=0.0431 | S=0.0000 | uncharted=False
+2026-09-27 20:56:56,547 [INFO] Tick 7 | R0 | d_M=0.0354 | S=0.0000 | uncharted=False
+2026-09-27 20:57:01,579 [INFO] Tick 8 | R0 | d_M=0.0405 | S=0.0000 | uncharted=False
+2026-09-27 20:57:06,606 [INFO] Tick 9 | R0 | d_M=0.0380 | S=0.0000 | uncharted=False
+2026-09-27 20:57:11,632 [INFO] Tick 10 | R0 | d_M=0.0382 | S=0.0000 | uncharted=False
+2026-09-27 20:57:16,657 [INFO] Tick 11 | R0 | d_M=0.0386 | S=0.0000 | uncharted=False
+2026-09-27 20:57:21,685 [INFO] Tick 12 | R0 | d_M=0.0439 | S=0.0000 | uncharted=False
+2026-09-27 20:57:26,719 [INFO] Tick 13 | R0 | d_M=0.0393 | S=0.0000 | uncharted=False
+2026-09-27 20:57:31,746 [INFO] Tick 14 | R0 | d_M=0.0411 | S=0.0000 | uncharted=False
+2026-09-27 20:57:36,770 [INFO] Tick 15 | R0 | d_M=0.0456 | S=0.0000 | uncharted=False
+2026-09-27 20:57:41,796 [INFO] Tick 16 | R0 | d_M=0.0333 | S=0.0000 | uncharted=False
+2026-09-27 20:57:46,824 [INFO] Tick 17 | R0 | d_M=0.0473 | S=0.0000 | uncharted=False
+2026-09-27 20:57:51,850 [INFO] Tick 18 | R0 | d_M=0.0396 | S=0.0000 | uncharted=False
+2026-09-27 20:57:56,879 [INFO] Tick 19 | R0 | d_M=0.0332 | S=0.0000 | uncharted=False
+2026-09-27 20:58:01,911 [INFO] Tick 20 | R0 | d_M=0.0342 | S=0.0000 | uncharted=False
+2026-09-27 20:58:06,942 [INFO] Tick 21 | R0 | d_M=0.0451 | S=0.0000 | uncharted=False
+2026-09-27 20:58:11,969 [INFO] Tick 22 | R0 | d_M=0.0196 | S=0.0000 | uncharted=False
+2026-09-27 20:58:16,999 [INFO] Tick 23 | R0 | d_M=0.0397 | S=0.0000 | uncharted=False
+2026-09-27 20:58:22,028 [INFO] Tick 24 | R0 | d_M=0.0442 | S=0.0000 | uncharted=False
+2026-09-27 20:58:27,056 [INFO] Tick 25 | R0 | d_M=0.0343 | S=0.0000 | uncharted=False
+2026-09-27 20:58:32,086 [INFO] Tick 26 | R0 | d_M=0.0441 | S=0.0000 | uncharted=False
+2026-09-27 20:58:37,116 [INFO] Tick 27 | R0 | d_M=0.0402 | S=0.0000 | uncharted=False
+2026-09-27 20:58:42,145 [INFO] Tick 28 | R0 | d_M=0.0460 | S=0.0000 | uncharted=False
+2026-09-27 20:58:47,175 [INFO] Tick 29 | R0 | d_M=0.0399 | S=0.0000 | uncharted=False
+2026-09-27 20:58:52,208 [INFO] Tick 30 | R0 | d_M=0.3408 | S=0.1917 | uncharted=False
+2026-09-27 20:58:57,239 [INFO] Tick 31 | R0 | d_M=1.6055 | S=1.6480 | uncharted=False
+2026-09-27 20:58:57,242 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.606, S=1.648): U_res=1.097 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 20:59:02,266 [INFO] Tick 32 | R0 | d_M=2.8883 | S=2.7391 | uncharted=False
+2026-09-27 20:59:02,269 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.888, S=2.739): U_res=1.032 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 20:59:07,297 [INFO] Tick 33 | R1 | d_M=3.0379 | S=2.8888 | uncharted=True
+2026-09-27 20:59:07,299 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.038, S=2.889): U_res=1.055 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 20:59:12,327 [INFO] Tick 34 | R1 | d_M=2.0174 | S=1.8682 | uncharted=False
+2026-09-27 20:59:12,329 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.017, S=1.868): U_res=0.973 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 20:59:17,361 [INFO] Tick 35 | R1 | d_M=0.9250 | S=0.7759 | uncharted=False
+2026-09-27 20:59:22,394 [INFO] Tick 36 | R1 | d_M=0.3319 | S=0.9586 | uncharted=False
+2026-09-27 20:59:27,427 [INFO] Tick 37 | R1 | d_M=1.5595 | S=2.3689 | uncharted=False
+2026-09-27 20:59:27,429 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.559, S=2.369): U_res=1.008 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 20:59:32,457 [INFO] Tick 38 | R1 | d_M=2.5071 | S=2.3579 | uncharted=False
+2026-09-27 20:59:32,459 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=0.985 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 20:59:37,495 [INFO] Tick 39 | R1 | d_M=2.5071 | S=2.3579 | uncharted=False
+2026-09-27 20:59:37,499 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=0.943 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 20:59:42,534 [INFO] Tick 40 | R1 | d_M=2.5811 | S=2.4319 | uncharted=False
+2026-09-27 20:59:42,536 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.581, S=2.432): U_res=7.625 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 20:59:47,570 [INFO] Tick 41 | R1 | d_M=2.6688 | S=2.5196 | uncharted=False
+2026-09-27 20:59:47,573 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.669, S=2.520): U_res=11.367 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 20:59:52,605 [INFO] Tick 42 | R1 | d_M=2.5093 | S=2.3601 | uncharted=False
+2026-09-27 20:59:52,607 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.509, S=2.360): U_res=2.091 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 20:59:57,637 [INFO] Tick 43 | R1 | d_M=2.5107 | S=2.3615 | uncharted=False
+2026-09-27 20:59:57,639 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.511, S=2.362): U_res=2.406 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:00:02,672 [INFO] Tick 44 | R1 | d_M=2.5078 | S=2.3586 | uncharted=False
+2026-09-27 21:00:02,674 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.508, S=2.359): U_res=1.585 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:00:07,710 [INFO] Tick 45 | R1 | d_M=2.5075 | S=2.3584 | uncharted=False
+2026-09-27 21:00:07,712 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.508, S=2.358): U_res=1.461 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:00:12,743 [INFO] Tick 46 | R1 | d_M=2.5076 | S=2.3584 | uncharted=False
+2026-09-27 21:00:12,744 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.508, S=2.358): U_res=1.494 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:00:17,777 [INFO] Tick 47 | R1 | d_M=2.0820 | S=1.9328 | uncharted=False
+2026-09-27 21:00:17,779 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.082, S=1.933): U_res=1.475 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:00:22,805 [INFO] Tick 48 | R1 | d_M=1.4139 | S=1.2648 | uncharted=False
+2026-09-27 21:00:22,807 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.414, S=1.265): U_res=1.369 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:00:27,837 [INFO] Tick 49 | R1 | d_M=0.7001 | S=0.5510 | uncharted=False
+2026-09-27 21:00:32,867 [INFO] Tick 50 | R1 | d_M=0.0910 | S=0.4928 | uncharted=False
+2026-09-27 21:00:37,895 [INFO] Tick 51 | R1 | d_M=0.1419 | S=0.4855 | uncharted=False
+2026-09-27 21:00:42,923 [INFO] Tick 52 | R1 | d_M=0.2957 | S=0.6321 | uncharted=False
+2026-09-27 21:00:47,952 [INFO] Tick 53 | R1 | d_M=0.2983 | S=0.7812 | uncharted=False
+2026-09-27 21:00:52,978 [INFO] Tick 54 | R1 | d_M=0.1397 | S=0.7718 | uncharted=False
+2026-09-27 21:00:58,015 [INFO] Tick 55 | R1 | d_M=0.4924 | S=1.1150 | uncharted=False
+2026-09-27 21:00:58,017 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=0.492, S=1.115): U_res=1.254 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:01:03,055 [INFO] Tick 56 | R1 | d_M=1.1337 | S=0.9846 | uncharted=False
+2026-09-27 21:01:08,083 [INFO] Tick 57 | R1 | d_M=1.7905 | S=2.6259 | uncharted=False
+2026-09-27 21:01:08,085 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.791, S=2.626): U_res=1.128 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:01:13,113 [INFO] Tick 58 | R1 | d_M=2.4640 | S=2.3148 | uncharted=False
+2026-09-27 21:01:13,115 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.464, S=2.315): U_res=1.230 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:01:18,142 [INFO] Tick 59 | R1 | d_M=3.1544 | S=3.0053 | uncharted=True
+2026-09-27 21:01:18,144 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.154, S=3.005): U_res=1.312 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:01:23,178 [INFO] Tick 60 | R0 | d_M=3.6109 | S=3.4617 | uncharted=True
+2026-09-27 21:01:23,180 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.611, S=3.462): U_res=1.179 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:01:28,214 [INFO] Tick 61 | R0 | d_M=2.8843 | S=2.7351 | uncharted=False
+2026-09-27 21:01:28,216 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.884, S=2.735): U_res=1.393 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:01:33,243 [INFO] Tick 62 | R0 | d_M=2.1387 | S=1.9895 | uncharted=False
+2026-09-27 21:01:33,245 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.139, S=1.990): U_res=1.278 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:01:38,274 [INFO] Tick 63 | R0 | d_M=1.3732 | S=1.2240 | uncharted=False
+2026-09-27 21:01:38,276 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.373, S=1.224): U_res=1.268 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:01:43,310 [INFO] Tick 64 | R0 | d_M=0.5879 | S=0.4388 | uncharted=False
+2026-09-27 21:01:48,339 [INFO] Tick 65 | R0 | d_M=0.0218 | S=0.3114 | uncharted=False
+2026-09-27 21:01:53,373 [INFO] Tick 66 | R0 | d_M=0.0217 | S=0.1839 | uncharted=False
+2026-09-27 21:01:58,405 [INFO] Tick 67 | R0 | d_M=0.0246 | S=0.0593 | uncharted=False
+2026-09-27 21:02:03,431 [INFO] Tick 68 | R0 | d_M=0.0219 | S=0.0000 | uncharted=False
+2026-09-27 21:02:08,460 [INFO] Tick 69 | R0 | d_M=0.0217 | S=0.0000 | uncharted=False
+2026-09-27 21:02:13,494 [INFO] Tick 70 | R0 | d_M=0.0253 | S=0.0000 | uncharted=False
+2026-09-27 21:02:18,529 [INFO] Tick 71 | R0 | d_M=0.0227 | S=0.0000 | uncharted=False
+2026-09-27 21:02:23,557 [INFO] Tick 72 | R0 | d_M=0.0229 | S=0.0000 | uncharted=False
+2026-09-27 21:02:28,586 [INFO] Tick 73 | R0 | d_M=0.0245 | S=0.0000 | uncharted=False
+2026-09-27 21:02:33,612 [INFO] Tick 74 | R0 | d_M=0.0236 | S=0.0000 | uncharted=False
+2026-09-27 21:02:38,643 [INFO] Tick 75 | R0 | d_M=0.0267 | S=0.0000 | uncharted=False
+2026-09-27 21:02:43,675 [INFO] Tick 76 | R0 | d_M=0.0240 | S=0.0000 | uncharted=False
+2026-09-27 21:02:48,707 [INFO] Tick 77 | R0 | d_M=0.0242 | S=0.0000 | uncharted=False
+2026-09-27 21:02:53,735 [INFO] Tick 78 | R0 | d_M=0.0234 | S=0.0000 | uncharted=False
+2026-09-27 21:02:58,766 [INFO] Tick 79 | R0 | d_M=0.0250 | S=0.0000 | uncharted=False
+2026-09-27 21:03:03,799 [INFO] Tick 80 | R0 | d_M=0.0231 | S=0.0000 | uncharted=False
+2026-09-27 21:03:08,830 [INFO] Tick 81 | R0 | d_M=0.0235 | S=0.0000 | uncharted=False
+2026-09-27 21:03:13,862 [INFO] Tick 82 | R0 | d_M=0.0264 | S=0.0000 | uncharted=False
+2026-09-27 21:03:18,893 [INFO] Tick 83 | R0 | d_M=0.0203 | S=0.0000 | uncharted=False
+2026-09-27 21:03:23,923 [INFO] Tick 84 | R0 | d_M=0.0196 | S=0.0000 | uncharted=False
+2026-09-27 21:03:28,953 [INFO] Tick 85 | R0 | d_M=0.0213 | S=0.0000 | uncharted=False
+2026-09-27 21:03:33,982 [INFO] Tick 86 | R0 | d_M=0.0224 | S=0.0000 | uncharted=False
+2026-09-27 21:03:39,013 [INFO] Tick 87 | R0 | d_M=0.0238 | S=0.0000 | uncharted=False
+2026-09-27 21:03:44,039 [INFO] Tick 88 | R0 | d_M=0.0207 | S=0.0000 | uncharted=False
+2026-09-27 21:03:49,072 [INFO] Tick 89 | R0 | d_M=0.0238 | S=0.0000 | uncharted=False
+2026-09-27 21:03:54,107 [INFO] Tick 90 | R0 | d_M=0.0229 | S=0.0000 | uncharted=False
+2026-09-27 21:03:59,138 [INFO] Tick 91 | R0 | d_M=2.9667 | S=2.8175 | uncharted=False
+2026-09-27 21:03:59,141 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.967, S=2.818): U_res=1.272 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:04:04,174 [INFO] Tick 92 | R1 | d_M=3.0653 | S=2.9161 | uncharted=True
+2026-09-27 21:04:04,176 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.065, S=2.916): U_res=1.213 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:09,208 [INFO] Tick 93 | R1 | d_M=1.6488 | S=1.4996 | uncharted=False
+2026-09-27 21:04:09,210 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.649, S=1.500): U_res=1.222 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:14,240 [INFO] Tick 94 | R1 | d_M=0.2551 | S=0.1059 | uncharted=False
+2026-09-27 21:04:19,272 [INFO] Tick 95 | R1 | d_M=1.1187 | S=1.0754 | uncharted=False
+2026-09-27 21:04:19,274 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.119, S=1.075): U_res=1.216 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:24,303 [INFO] Tick 96 | R1 | d_M=2.4682 | S=2.3190 | uncharted=False
+2026-09-27 21:04:24,305 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.468, S=2.319): U_res=1.193 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:29,336 [INFO] Tick 97 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:04:29,338 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.285 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:34,366 [INFO] Tick 98 | R1 | d_M=2.5076 | S=2.3584 | uncharted=False
+2026-09-27 21:04:34,368 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.508, S=2.358): U_res=1.498 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:39,399 [INFO] Tick 99 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:04:39,401 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.227 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:44,436 [INFO] Tick 100 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:04:44,437 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.279 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:49,469 [INFO] Tick 101 | R1 | d_M=2.5072 | S=2.3581 | uncharted=False
+2026-09-27 21:04:49,470 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.241 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:54,501 [INFO] Tick 102 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:04:54,503 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.294 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:04:59,531 [INFO] Tick 103 | R1 | d_M=2.5072 | S=2.3581 | uncharted=False
+2026-09-27 21:04:59,532 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.236 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:04,564 [INFO] Tick 104 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:05:04,567 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.312 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:09,603 [INFO] Tick 105 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:05:09,605 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.228 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:14,634 [INFO] Tick 106 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:05:14,636 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.223 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:19,662 [INFO] Tick 107 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:05:19,664 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.196 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:24,693 [INFO] Tick 108 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:05:24,695 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.189 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:29,721 [INFO] Tick 109 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:05:29,723 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.267 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:34,754 [INFO] Tick 110 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:05:34,756 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.187 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:39,786 [INFO] Tick 111 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:05:39,788 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.306 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:44,815 [INFO] Tick 112 | R1 | d_M=2.5072 | S=2.3581 | uncharted=False
+2026-09-27 21:05:44,818 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.232 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:49,848 [INFO] Tick 113 | R1 | d_M=2.5072 | S=2.3581 | uncharted=False
+2026-09-27 21:05:49,850 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.232 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:54,882 [INFO] Tick 114 | R1 | d_M=2.5072 | S=2.3581 | uncharted=False
+2026-09-27 21:05:54,884 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.245 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:05:59,919 [INFO] Tick 115 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:05:59,921 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.215 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:04,956 [INFO] Tick 116 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:06:04,959 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.184 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:09,991 [INFO] Tick 117 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:06:09,993 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.198 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:15,029 [INFO] Tick 118 | R1 | d_M=2.5072 | S=2.3581 | uncharted=False
+2026-09-27 21:06:15,032 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.247 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:20,063 [INFO] Tick 119 | R1 | d_M=2.5072 | S=2.3580 | uncharted=False
+2026-09-27 21:06:20,064 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.179 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:25,097 [INFO] Tick 120 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:06:25,099 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.273 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:30,134 [INFO] Tick 121 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:06:30,136 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.288 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:35,166 [INFO] Tick 122 | R1 | d_M=2.5075 | S=2.3583 | uncharted=False
+2026-09-27 21:06:35,169 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.419 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:40,203 [INFO] Tick 123 | R1 | d_M=2.5074 | S=2.3582 | uncharted=False
+2026-09-27 21:06:40,205 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.388 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:45,238 [INFO] Tick 124 | R1 | d_M=2.5075 | S=2.3583 | uncharted=False
+2026-09-27 21:06:45,240 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.434 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:50,269 [INFO] Tick 125 | R1 | d_M=2.5073 | S=2.3581 | uncharted=False
+2026-09-27 21:06:50,271 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.303 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:06:55,308 [INFO] Tick 126 | R1 | d_M=2.5071 | S=2.3580 | uncharted=False
+2026-09-27 21:06:55,310 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.139 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:07:00,339 [INFO] Tick 127 | R1 | d_M=2.5074 | S=2.3582 | uncharted=False
+2026-09-27 21:07:00,341 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.365 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:07:05,373 [INFO] Tick 128 | R1 | d_M=2.5071 | S=2.3580 | uncharted=False
+2026-09-27 21:07:05,375 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.132 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:07:10,404 [INFO] Tick 129 | R1 | d_M=2.5071 | S=2.3580 | uncharted=False
+2026-09-27 21:07:10,406 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.507, S=2.358): U_res=1.143 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:07:15,436 [INFO] Tick 130 | R1 | d_M=1.4081 | S=1.2590 | uncharted=False
+2026-09-27 21:07:15,438 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.408, S=1.259): U_res=1.291 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:07:20,467 [INFO] Tick 131 | R1 | d_M=0.0770 | S=0.0000 | uncharted=False
+2026-09-27 21:07:25,501 [INFO] Tick 132 | R1 | d_M=1.5843 | S=1.4352 | uncharted=False
+2026-09-27 21:07:25,503 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.584, S=1.435): U_res=1.129 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:07:30,531 [INFO] Tick 133 | R1 | d_M=3.1201 | S=2.9709 | uncharted=True
+2026-09-27 21:07:30,534 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.120, S=2.971): U_res=1.175 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:07:35,564 [INFO] Tick 134 | R0 | d_M=2.7902 | S=2.6411 | uncharted=False
+2026-09-27 21:07:35,566 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.790, S=2.641): U_res=1.125 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:07:40,591 [INFO] Tick 135 | R0 | d_M=1.1987 | S=1.0495 | uncharted=False
+2026-09-27 21:07:40,593 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.199, S=1.050): U_res=1.187 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:07:45,626 [INFO] Tick 136 | R0 | d_M=0.0240 | S=0.0000 | uncharted=False
+2026-09-27 21:07:50,653 [INFO] Tick 137 | R0 | d_M=0.0260 | S=0.0000 | uncharted=False
+2026-09-27 21:07:55,682 [INFO] Tick 138 | R0 | d_M=0.0227 | S=0.0000 | uncharted=False
+2026-09-27 21:08:00,713 [INFO] Tick 139 | R0 | d_M=0.0230 | S=0.0000 | uncharted=False
+2026-09-27 21:08:05,745 [INFO] Tick 140 | R0 | d_M=0.0277 | S=0.0000 | uncharted=False
+2026-09-27 21:08:10,771 [INFO] Tick 141 | R0 | d_M=0.0231 | S=0.0000 | uncharted=False
+2026-09-27 21:08:15,802 [INFO] Tick 142 | R0 | d_M=0.0254 | S=0.0000 | uncharted=False
+2026-09-27 21:08:20,827 [INFO] Tick 143 | R0 | d_M=0.0263 | S=0.0000 | uncharted=False
+2026-09-27 21:08:25,857 [INFO] Tick 144 | R0 | d_M=0.0257 | S=0.0000 | uncharted=False
+2026-09-27 21:08:30,892 [INFO] Tick 145 | R0 | d_M=0.0222 | S=0.0000 | uncharted=False
+2026-09-27 21:08:35,919 [INFO] Tick 146 | R0 | d_M=0.0238 | S=0.0000 | uncharted=False
+2026-09-27 21:08:40,948 [INFO] Tick 147 | R0 | d_M=0.0243 | S=0.0000 | uncharted=False
+2026-09-27 21:08:45,976 [INFO] Tick 148 | R0 | d_M=0.0231 | S=0.0000 | uncharted=False
+2026-09-27 21:08:51,008 [INFO] Tick 149 | R0 | d_M=0.1812 | S=0.0321 | uncharted=False
+2026-09-27 21:08:56,038 [INFO] Tick 150 | R0 | d_M=0.9794 | S=0.8623 | uncharted=False
+2026-09-27 21:09:01,069 [INFO] Tick 151 | R0 | d_M=1.7566 | S=2.4697 | uncharted=False
+2026-09-27 21:09:01,071 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.757, S=2.470): U_res=1.286 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:09:06,099 [INFO] Tick 152 | R0 | d_M=2.5136 | S=2.3645 | uncharted=False
+2026-09-27 21:09:06,102 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.514, S=2.364): U_res=1.295 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:09:11,134 [INFO] Tick 153 | R0 | d_M=3.2511 | S=3.1019 | uncharted=True
+2026-09-27 21:09:11,136 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.251, S=3.102): U_res=1.254 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:09:16,168 [INFO] Tick 154 | R1 | d_M=3.5041 | S=3.3549 | uncharted=True
+2026-09-27 21:09:16,170 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.504, S=3.355): U_res=1.340 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:09:21,198 [INFO] Tick 155 | R1 | d_M=2.8035 | S=2.6543 | uncharted=False
+2026-09-27 21:09:21,200 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.803, S=2.654): U_res=1.269 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:09:26,229 [INFO] Tick 156 | R1 | d_M=2.1202 | S=1.9710 | uncharted=False
+2026-09-27 21:09:26,231 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.120, S=1.971): U_res=1.245 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:09:31,266 [INFO] Tick 157 | R1 | d_M=1.4540 | S=1.3048 | uncharted=False
+2026-09-27 21:09:31,268 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.454, S=1.305): U_res=1.246 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:09:36,294 [INFO] Tick 158 | R1 | d_M=0.8039 | S=0.6547 | uncharted=False
+2026-09-27 21:09:41,328 [INFO] Tick 159 | R1 | d_M=0.1709 | S=0.6764 | uncharted=False
+2026-09-27 21:09:46,356 [INFO] Tick 160 | R1 | d_M=0.2949 | S=0.8221 | uncharted=False
+2026-09-27 21:09:51,382 [INFO] Tick 161 | R1 | d_M=0.2949 | S=0.9678 | uncharted=False
+2026-09-27 21:09:56,417 [INFO] Tick 162 | R1 | d_M=0.2945 | S=1.1132 | uncharted=False
+2026-09-27 21:09:56,419 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=0.294, S=1.113): U_res=1.243 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:10:01,447 [INFO] Tick 163 | R1 | d_M=0.2946 | S=0.1454 | uncharted=False
+2026-09-27 21:10:06,480 [INFO] Tick 164 | R1 | d_M=0.2952 | S=0.2915 | uncharted=False
+2026-09-27 21:10:11,507 [INFO] Tick 165 | R1 | d_M=0.2947 | S=0.4370 | uncharted=False
+2026-09-27 21:10:16,536 [INFO] Tick 166 | R1 | d_M=0.2942 | S=0.5820 | uncharted=False
+2026-09-27 21:10:21,568 [INFO] Tick 167 | R1 | d_M=0.2943 | S=0.7271 | uncharted=False
+2026-09-27 21:10:26,592 [INFO] Tick 168 | R1 | d_M=0.2942 | S=0.8722 | uncharted=False
+2026-09-27 21:10:31,627 [INFO] Tick 169 | R1 | d_M=0.2951 | S=1.0181 | uncharted=False
+2026-09-27 21:10:31,629 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=0.295, S=1.018): U_res=1.311 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:10:36,663 [INFO] Tick 170 | R1 | d_M=0.2947 | S=0.1455 | uncharted=False
+2026-09-27 21:10:41,692 [INFO] Tick 171 | R1 | d_M=0.2946 | S=0.2910 | uncharted=False
+2026-09-27 21:10:46,721 [INFO] Tick 172 | R1 | d_M=0.2944 | S=0.4362 | uncharted=False
+2026-09-27 21:10:51,753 [INFO] Tick 173 | R1 | d_M=0.1367 | S=0.4237 | uncharted=False
+2026-09-27 21:10:56,785 [INFO] Tick 174 | R1 | d_M=0.4921 | S=0.7666 | uncharted=False
+2026-09-27 21:11:01,828 [INFO] Tick 175 | R1 | d_M=1.1332 | S=1.7507 | uncharted=False
+2026-09-27 21:11:01,830 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.133, S=1.751): U_res=1.105 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:11:06,861 [INFO] Tick 176 | R1 | d_M=1.7902 | S=1.6410 | uncharted=False
+2026-09-27 21:11:06,863 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.790, S=1.641): U_res=1.111 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:11:11,892 [INFO] Tick 177 | R1 | d_M=2.4638 | S=2.3146 | uncharted=False
+2026-09-27 21:11:11,894 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.464, S=2.315): U_res=1.141 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:11:16,924 [INFO] Tick 178 | R1 | d_M=3.1544 | S=3.0053 | uncharted=True
+2026-09-27 21:11:16,925 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.154, S=3.005): U_res=1.135 exceeds regime max 0.529. Current regime R1 recommends activating ['p1', 'p2', 'p3', 'p4', 'p5'].
+2026-09-27 21:11:21,956 [INFO] Tick 179 | R0 | d_M=3.6110 | S=3.4619 | uncharted=True
+2026-09-27 21:11:21,958 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=3.611, S=3.462): U_res=1.115 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:11:26,983 [INFO] Tick 180 | R0 | d_M=2.8843 | S=2.7352 | uncharted=False
+2026-09-27 21:11:26,985 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.884, S=2.735): U_res=1.139 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:11:32,015 [INFO] Tick 181 | R0 | d_M=2.1387 | S=1.9895 | uncharted=False
+2026-09-27 21:11:32,017 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=2.139, S=1.990): U_res=1.127 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:11:37,048 [INFO] Tick 182 | R0 | d_M=1.3732 | S=1.2240 | uncharted=False
+2026-09-27 21:11:37,050 [WARNING] DRIFT ALERT  Sustained drift detected (d_M=1.373, S=1.224): U_res=1.138 exceeds regime max 0.796. Current regime R0 recommends activating ['p1'].
+2026-09-27 21:11:42,085 [INFO] Tick 183 | R0 | d_M=0.5872 | S=0.4380 | uncharted=False
+2026-09-27 21:11:47,116 [INFO] Tick 184 | R0 | d_M=0.0235 | S=0.3124 | uncharted=False
+2026-09-27 21:11:52,147 [INFO] Tick 185 | R0 | d_M=0.0245 | S=0.1877 | uncharted=False
+2026-09-27 21:11:57,178 [INFO] Tick 186 | R0 | d_M=0.0207 | S=0.0592 | uncharted=False
+2026-09-27 21:12:02,205 [INFO] Tick 187 | R0 | d_M=0.0243 | S=0.0000 | uncharted=False
+2026-09-27 21:12:07,236 [INFO] Tick 188 | R0 | d_M=0.0253 | S=0.0000 | uncharted=False
+2026-09-27 21:12:12,270 [INFO] Tick 189 | R0 | d_M=0.0259 | S=0.0000 | uncharted=False
+2026-09-27 21:12:17,303 [INFO] Tick 190 | R0 | d_M=0.0242 | S=0.0000 | uncharted=False
+2026-09-27 21:12:22,329 [INFO] Tick 191 | R0 | d_M=0.0275 | S=0.0000 | uncharted=False
+2026-09-27 21:12:27,360 [INFO] Tick 192 | R0 | d_M=0.0279 | S=0.0000 | uncharted=False
+2026-09-27 21:12:32,391 [INFO] Tick 193 | R0 | d_M=0.0210 | S=0.0000 | uncharted=False
+2026-09-27 21:12:37,418 [INFO] Tick 194 | R0 | d_M=0.0269 | S=0.0000 | uncharted=False
+2026-09-27 21:12:42,454 [INFO] Tick 195 | R0 | d_M=0.0263 | S=0.0000 | uncharted=False
+2026-09-27 21:12:47,483 [INFO] Tick 196 | R0 | d_M=0.0250 | S=0.0000 | uncharted=False
+2026-09-27 21:12:52,511 [INFO] Tick 197 | R0 | d_M=0.0257 | S=0.0000 | uncharted=False
+2026-09-27 21:12:57,546 [INFO] Tick 198 | R0 | d_M=0.0261 | S=0.0000 | uncharted=False
+2026-09-27 21:13:02,574 [INFO] Tick 199 | R0 | d_M=0.0226 | S=0.0000 | uncharted=False
+2026-09-27 21:13:07,607 [INFO] Tick 200 | R0 | d_M=0.0244 | S=0.0000 | uncharted=False
+2026-09-27 21:13:12,635 [INFO] Tick 201 | R0 | d_M=0.0257 | S=0.0000 | uncharted=False
+2026-09-27 21:13:17,662 [INFO] Tick 202 | R0 | d_M=0.0260 | S=0.0000 | uncharted=False
+2026-09-27 21:13:22,690 [INFO] Tick 203 | R0 | d_M=0.0270 | S=0.0000 | uncharted=False
+2026-09-27 21:13:27,723 [INFO] Tick 204 | R0 | d_M=0.0274 | S=0.0000 | uncharted=False
+2026-09-27 21:13:32,756 [INFO] Tick 205 | R0 | d_M=0.0271 | S=0.0000 | uncharted=False
+2026-09-27 21:13:37,784 [INFO] Tick 206 | R0 | d_M=0.0263 | S=0.0000 | uncharted=False
+2026-09-27 21:13:42,814 [INFO] Tick 207 | R0 | d_M=0.0245 | S=0.0000 | uncharted=False
+2026-09-27 21:13:47,846 [INFO] Tick 208 | R0 | d_M=0.0261 | S=0.0000 | uncharted=False
+2026-09-27 21:13:52,873 [INFO] Tick 209 | R0 | d_M=0.0261 | S=0.0000 | uncharted=False
+2026-09-27 21:13:57,903 [INFO] Tick 210 | R0 | d_M=0.0264 | S=0.0000 | uncharted=False
+2026-09-27 21:14:02,936 [INFO] Tick 211 | R0 | d_M=0.0268 | S=0.0000 | uncharted=False
+2026-09-27 21:14:07,966 [INFO] Tick 212 | R0 | d_M=0.0240 | S=0.0000 | uncharted=False
+2026-09-27 21:14:12,997 [INFO] Tick 213 | R0 | d_M=0.0235 | S=0.0000 | uncharted=False
+2026-09-27 21:14:18,026 [INFO] Tick 214 | R0 | d_M=0.0446 | S=0.0000 | uncharted=False
+2026-09-27 21:14:23,058 [INFO] Tick 215 | R0 | d_M=0.0474 | S=0.0000 | uncharted=False
+2026-09-27 21:14:28,089 [INFO] Tick 216 | R0 | d_M=0.0433 | S=0.0000 | uncharted=False
+2026-09-27 21:14:33,120 [INFO] Tick 217 | R0 | d_M=0.0481 | S=0.0000 | uncharted=False
+2026-09-27 21:14:38,148 [INFO] Tick 218 | R0 | d_M=0.0470 | S=0.0000 | uncharted=False
+2026-09-27 21:14:43,175 [INFO] Tick 219 | R0 | d_M=0.0282 | S=0.0000 | uncharted=False
+2026-09-27 21:14:48,203 [INFO] Tick 220 | R0 | d_M=0.0887 | S=0.0000 | uncharted=False
+2026-09-27 21:14:53,231 [INFO] Tick 221 | R0 | d_M=0.2505 | S=0.1014 | uncharted=False
+2026-09-27 21:14:58,258 [INFO] Tick 222 | R2 | d_M=0.3205 | S=0.2727 | uncharted=False
+2026-09-27 21:15:03,288 [INFO] Tick 223 | R2 | d_M=0.2163 | S=0.3398 | uncharted=False
+2026-09-27 21:15:08,317 [INFO] Tick 224 | R2 | d_M=0.1385 | S=0.3291 | uncharted=False
+2026-09-27 21:15:13,349 [INFO] Tick 225 | R2 | d_M=0.1263 | S=0.3063 | uncharted=False
+2026-09-27 21:15:18,377 [INFO] Tick 226 | R2 | d_M=0.2255 | S=0.3826 | uncharted=False
+2026-09-27 21:15:23,406 [INFO] Tick 227 | R2 | d_M=0.3361 | S=0.5696 | uncharted=False
+2026-09-27 21:15:28,438 [INFO] Tick 228 | R3 | d_M=0.2850 | S=0.7054 | uncharted=False
+2026-09-27 21:15:33,469 [INFO] Tick 229 | R3 | d_M=0.1532 | S=0.7095 | uncharted=False
+2026-09-27 21:15:38,498 [INFO] Tick 230 | R3 | d_M=0.0609 | S=0.6212 | uncharted=False
+2026-09-27 21:15:43,525 [INFO] Tick 231 | R3 | d_M=0.0723 | S=0.5443 | uncharted=False
+2026-09-27 21:15:48,550 [INFO] Tick 232 | R3 | d_M=0.0736 | S=0.4687 | uncharted=False
+2026-09-27 21:15:53,585 [INFO] Tick 233 | R3 | d_M=0.0780 | S=0.3975 | uncharted=False
+2026-09-27 21:15:58,614 [INFO] Tick 234 | R3 | d_M=0.0750 | S=0.3233 | uncharted=False
+2026-09-27 21:16:03,651 [INFO] Tick 235 | R3 | d_M=0.0772 | S=0.2514 | uncharted=False
+2026-09-27 21:16:08,678 [INFO] Tick 236 | R3 | d_M=0.0760 | S=0.1782 | uncharted=False
+2026-09-27 21:16:13,706 [INFO] Tick 237 | R3 | d_M=0.0683 | S=0.0974 | uncharted=False
+2026-09-27 21:16:18,740 [INFO] Tick 238 | R3 | d_M=0.0763 | S=0.0245 | uncharted=False
+2026-09-27 21:16:23,766 [INFO] Tick 239 | R3 | d_M=0.0726 | S=0.0000 | uncharted=False
+2026-09-27 21:16:28,794 [INFO] Tick 240 | R3 | d_M=0.0787 | S=0.0000 | uncharted=False
+2026-09-27 21:16:33,820 [INFO] Tick 241 | R3 | d_M=0.0646 | S=0.0000 | uncharted=False
+2026-09-27 21:16:38,851 [INFO] Tick 242 | R3 | d_M=0.0649 | S=0.0000 | uncharted=False
+2026-09-27 21:16:43,891 [INFO] Tick 243 | R3 | d_M=0.0624 | S=0.0000 | uncharted=False
+2026-09-27 21:16:48,924 [INFO] Tick 244 | R2 | d_M=0.5130 | S=0.3638 | uncharted=False
+2026-09-27 21:16:53,959 [INFO] Tick 245 | R2 | d_M=0.2272 | S=0.4418 | uncharted=False
+2026-09-27 21:16:58,989 [INFO] Tick 246 | R2 | d_M=0.1690 | S=0.4616 | uncharted=False
+2026-09-27 21:17:04,016 [INFO] Tick 247 | R2 | d_M=0.0616 | S=0.3741 | uncharted=False
+2026-09-27 21:17:09,047 [INFO] Tick 248 | R2 | d_M=0.1457 | S=0.3706 | uncharted=False
+2026-09-27 21:17:14,075 [INFO] Tick 249 | R2 | d_M=0.2137 | S=0.4352 | uncharted=False
+2026-09-27 21:17:19,103 [INFO] Tick 250 | R2 | d_M=0.2982 | S=0.5842 | uncharted=False
+2026-09-27 21:17:24,129 [INFO] Tick 251 | R0 | d_M=0.2968 | S=0.7318 | uncharted=False
+2026-09-27 21:17:29,164 [INFO] Tick 252 | R0 | d_M=0.2129 | S=0.7955 | uncharted=False
+2026-09-27 21:17:34,194 [INFO] Tick 253 | R0 | d_M=0.1330 | S=0.7794 | uncharted=False
+2026-09-27 21:17:39,221 [INFO] Tick 254 | R0 | d_M=0.0625 | S=0.6926 | uncharted=False
+2026-09-27 21:17:44,257 [INFO] Tick 255 | R0 | d_M=0.0378 | S=0.5813 | uncharted=False
+2026-09-27 21:17:49,289 [INFO] Tick 256 | R0 | d_M=0.0396 | S=0.4717 | uncharted=False
+2026-09-27 21:17:54,323 [INFO] Tick 257 | R0 | d_M=0.0407 | S=0.3632 | uncharted=False
+2026-09-27 21:17:59,351 [INFO] Tick 258 | R0 | d_M=0.0379 | S=0.2519 | uncharted=False
+2026-09-27 21:18:04,377 [INFO] Tick 259 | R0 | d_M=0.0419 | S=0.1447 | uncharted=False
+2026-09-27 21:18:09,410 [INFO] Tick 260 | R0 | d_M=0.0392 | S=0.0347 | uncharted=False
+2026-09-27 21:18:14,439 [INFO] Tick 261 | R0 | d_M=0.0446 | S=0.0000 | uncharted=False
+2026-09-27 21:18:19,470 [INFO] Tick 262 | R0 | d_M=0.0463 | S=0.0000 | uncharted=False
+2026-09-27 21:18:24,499 [INFO] Tick 263 | R0 | d_M=0.0466 | S=0.0000 | uncharted=False
+2026-09-27 21:18:29,524 [INFO] Tick 264 | R0 | d_M=0.0444 | S=0.0000 | uncharted=False
+2026-09-27 21:18:34,553 [INFO] Tick 265 | R0 | d_M=0.0432 | S=0.0000 | uncharted=False
+2026-09-27 21:18:39,584 [INFO] Tick 266 | R0 | d_M=0.0443 | S=0.0000 | uncharted=False
+2026-09-27 21:18:44,616 [INFO] Tick 267 | R0 | d_M=0.0412 | S=0.0000 | uncharted=False
+2026-09-27 21:18:49,642 [INFO] Tick 268 | R0 | d_M=0.0426 | S=0.0000 | uncharted=False
+2026-09-27 21:18:54,674 [INFO] Tick 269 | R0 | d_M=0.0428 | S=0.0000 | uncharted=False
+2026-09-27 21:18:59,703 [INFO] Tick 270 | R0 | d_M=0.0425 | S=0.0000 | uncharted=False
+2026-09-27 21:19:04,731 [INFO] Tick 271 | R0 | d_M=0.0432 | S=0.0000 | uncharted=False
+2026-09-27 21:19:09,762 [INFO] Tick 272 | R0 | d_M=0.0431 | S=0.0000 | uncharted=False
+2026-09-27 21:19:14,788 [INFO] Tick 273 | R0 | d_M=0.0449 | S=0.0000 | uncharted=False
+2026-09-27 21:19:19,821 [INFO] Tick 274 | R0 | d_M=0.0423 | S=0.0000 | uncharted=False
+2026-09-27 21:19:24,853 [INFO] Tick 275 | R0 | d_M=0.0434 | S=0.0000 | uncharted=False
+2026-09-27 21:19:29,883 [INFO] Tick 276 | R0 | d_M=0.0441 | S=0.0000 | uncharted=False
+2026-09-27 21:19:34,914 [INFO] Tick 277 | R0 | d_M=0.0433 | S=0.0000 | uncharted=False
+2026-09-27 21:19:39,941 [INFO] Tick 278 | R0 | d_M=0.0437 | S=0.0000 | uncharted=False
+2026-09-27 21:19:44,970 [INFO] Tick 279 | R0 | d_M=0.0445 | S=0.0000 | uncharted=False
+2026-09-27 21:19:50,002 [INFO] Tick 280 | R0 | d_M=0.0449 | S=0.0000 | uncharted=False
+2026-09-27 21:19:55,035 [INFO] Tick 281 | R0 | d_M=0.0779 | S=0.0000 | uncharted=False
+2026-09-27 21:20:00,063 [INFO] Tick 282 | R0 | d_M=0.1174 | S=0.0000 | uncharted=False
+2026-09-27 21:20:05,089 [INFO] Tick 283 | R0 | d_M=0.1201 | S=0.0000 | uncharted=False
+2026-09-27 21:20:10,117 [INFO] Tick 284 | R0 | d_M=0.1201 | S=0.0000 | uncharted=False
+2026-09-27 21:20:15,142 [INFO] Tick 285 | R0 | d_M=0.1181 | S=0.0000 | uncharted=False
+2026-09-27 21:20:20,168 [INFO] Tick 286 | R0 | d_M=0.1191 | S=0.0000 | uncharted=False
+2026-09-27 21:20:25,195 [INFO] Tick 287 | R0 | d_M=0.1187 | S=0.0000 | uncharted=False
+2026-09-27 21:20:30,220 [INFO] Tick 288 | R0 | d_M=0.1189 | S=0.0000 | uncharted=False

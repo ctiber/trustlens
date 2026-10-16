@@ -24,6 +24,9 @@ class MixedAttackSimulation extends Simulation {
     .baseUrl("http://localhost:8080")
     .contentTypeHeader("application/json")
     .acceptHeader("application/json")
+    // Virtual users share a keep-alive connection pool (API clients behind a
+    // gateway); avoids connection-churn resets in the Docker port proxy.
+    .shareConnections
 
   // ── Legitimate users ───────────────────────────────────────────────────────
   val legitimateFeeder = Iterator.continually {

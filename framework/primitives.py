@@ -10,7 +10,7 @@ from dataclasses import dataclass, field
 from typing import Dict
 import numpy as np
 
-from config import PRIMITIVES, PRIMITIVE_COSTS
+from config import PRIMITIVES, PRIMITIVE_COSTS, PRIMITIVE_DEPENDENCIES
 
 
 @dataclass
@@ -62,15 +62,26 @@ class SecurityConfiguration:
             for pid in self.primitives
         )
 
+    def effective_activation(self, pid: str) -> float:
+        """
+        Activation that actually protects, given the primitive dependencies
+        (PRIMITIVE_DEPENDENCIES): e.g. rotating the JWT key (p4) protects
+        nothing unless some service verifies the tokens (p2).
+        """
+        a = self.primitives[pid].activation
+        for dep in PRIMITIVE_DEPENDENCIES.get(pid, ()):
+            a = min(a, self.primitives[dep].activation)
+        return a
+
     def protection_score(self) -> float:
         """
-        Fraction of primitives that are active: 0.0 (none) → 1.0 (all).
-        Used in Φ so that configs with more active primitives score higher
-        when R_sec is elevated (Eq. 6, revised).
+        Security activation level m(s): mean effective activation, 0.0 (none)
+        → 1.0 (all). Used in Φ so that configs with more (effectively) active
+        primitives score higher when R_sec is elevated (Eq. 6).
         """
         if not self.primitives:
             return 0.0
-        return sum(p.activation for p in self.primitives.values()) / len(self.primitives)
+        return sum(self.effective_activation(pid) for pid in self.primitives) / len(self.primitives)
 
     def cost_resources(self) -> float:
         """Estimated marginal resource overhead Cost_U(s) in [0,1]."""
@@ -196,3 +207,74 @@ def greedy_configurations(
             break
 
     return SecurityConfiguration(activations)
+
+
+# ── Candidate set and recommendation (Eq. 6–7) ───────────────────────────────
+
+GRADUATED_LEVELS = (0.0, 0.5, 1.0)
+
+
+def enumerate_candidate_configurations(
+    levels: tuple[float, ...] = GRADUATED_LEVELS,
+) -> list[SecurityConfiguration]:
+    """
+    Candidate set S_d of the paper: every on/off combination of the binary
+    primitives (2^3 = 8) times every discretised level of the graduated
+    primitives (3 × 3 = 9) — 72 postures.
+    """
+    import itertools
+    binary_ids = [p[0] for p in PRIMITIVES if p[2] == "binary"]
+    graduated_ids = [p[0] for p in PRIMITIVES if p[2] == "graduated"]
+    configs = []
+    for bits in itertools.product([0, 1], repeat=len(binary_ids)):
+        for lv in itertools.product(levels, repeat=len(graduated_ids)):
+            activations = dict(zip(binary_ids, bits))
+            activations.update(dict(zip(graduated_ids, lv)))
+            configs.append(SecurityConfiguration(activations))
+    return configs
+
+
+def max_cost_latency() -> float:
+    """Cost_T of the posture with every primitive at full activation."""
+    return sum(max(c["delta_T"], 0.0) for c in PRIMITIVE_COSTS.values()) or 1.0
+
+
+def phi(
+    cfg: SecurityConfiguration,
+    r_sec: float,
+    f_rate: float,
+    w_s: float,
+    w_l: float,
+    w_r: float,
+) -> float:
+    """
+    Scoring function Φ(s, R_i) (Eq. 6). r_sec and f_rate are min-max
+    normalised feature values; Cost_T is normalised by the cost of the
+    all-active posture so that the three terms share the [0, 1] scale.
+    """
+    return (
+        w_s * cfg.protection_score() * r_sec
+        - w_l * cfg.cost_latency() / max_cost_latency()
+        - w_r * f_rate
+    )
+
+
+def recommend(
+    r_sec: float,
+    f_rate: float,
+    w_s: float,
+    w_l: float,
+    w_r: float,
+) -> tuple[SecurityConfiguration, float]:
+    """
+    s* = argmax_{s in S_d} Φ(s, R_i) (Eq. 7). Ties are broken towards the
+    cheaper posture, then towards the more protective one (so that a
+    zero-cost primitive such as the perimeter p1 is never switched off).
+    """
+    best = max(
+        enumerate_candidate_configurations(),
+        key=lambda c: (round(phi(c, r_sec, f_rate, w_s, w_l, w_r), 12),
+                       -round(c.cost_latency(), 12),
+                       c.protection_score()),
+    )
+    return best, phi(best, r_sec, f_rate, w_s, w_l, w_r)

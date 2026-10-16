@@ -71,6 +71,8 @@ class PrometheusClient:
                 logger.warning("Empty result for query: %s", promql)
                 return None
             value = float(results[0]["value"][1])
+            if value != value:   # NaN: 0/0 over a window without any request
+                return None
             return value
         except Exception as exc:
             logger.error("Prometheus query failed (%s): %s", promql[:60], exc)

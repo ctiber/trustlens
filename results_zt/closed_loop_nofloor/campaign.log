@@ -1,0 +1,6 @@
+=== [16:29:35] closed-loop experiment mode=cl run=1 ===
+▶ variant=cl-light  mtls=on  profiles=sr ra  T_rot=60s
+✓ cl-light ready after 14s
+=== [16:57:51] closed-loop experiment mode=light run=1 ===
+▶ variant=cl-light  mtls=on  profiles=sr ra  T_rot=60s
+✓ cl-light ready after 14s
